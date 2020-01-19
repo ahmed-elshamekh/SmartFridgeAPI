@@ -11,16 +11,23 @@ exports.handler = async (event, context) => {
     var responseBody;
     var responseCode;
 
-    // Get the data to be used in the POST request.
+    // Get the data to be used in the PUT request.
     // Construct the JavaScript object described by the string
     var {fridgeSN, itemName, count} = JSON.parse(event.body);
     
-    if (itemName === "soda" && count > 12) {
-        responseBody = 'You cannot have more than 12 cans of soda in your fridge';
+    if (count <= 0) {
+        responseBody = 'The quantity of this item is invalid.';
+        // The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax)
+        responseCode = 400;
+    }
+    
+    // You cannot have more than 12 cans of soda in any fridge at any time.
+    else if (itemName === "soda" && count > 12) {
+        responseBody = 'You cannot have more than 12 cans of soda in your fridge.';
         responseCode = 200;
     }
+    
     else {
-        
         // Check if the fridge you want to update exists.
         var checkFridgeExist = {
             TableName: "Fridges",
@@ -36,7 +43,8 @@ exports.handler = async (event, context) => {
         responseBody = JSON.stringify(result.Item);
         
         if (!responseBody) {
-            responseBody = 'The specified fridge cannot be found';
+            responseBody = 'The specified fridge cannot be found.';
+            // The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible.
             responseCode = 404;
         }
         
@@ -58,11 +66,11 @@ exports.handler = async (event, context) => {
     
             try {
                 const data = await docClient.update(params).promise();
-                responseBody = 'Changes have been applied to your fridge';
+                responseBody = 'Changes have been applied to your fridge.';
                 responseCode = 200;
             }
             catch (err) {
-                responseBody = 'failed to add an item!';
+                responseBody = 'failed to update the fridge!';
                 responseCode = 404;
             }
         }
