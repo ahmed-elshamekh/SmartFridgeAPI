@@ -76,7 +76,7 @@ https://1v8jk3tfk1.execute-api.us-east-1.amazonaws.com/test/fridge/11111
  ## Remove an item from a certain fridge ##
  
 1. In the Postman desktop software, click on *Create a request* under *Start something new*.
-2. From the drop-down menu, select the **PUT** request.
+2. From the drop-down menu, select the **DELETE** request.
 3. In the URL text field, type the following: https://1v8jk3tfk1.execute-api.us-east-1.amazonaws.com/test/fridge
 4. Click on *Body* to specify the body of the request.
 5. Select *raw* and make sure the JSON format is selected.
@@ -84,16 +84,14 @@ https://1v8jk3tfk1.execute-api.us-east-1.amazonaws.com/test/fridge/11111
 
 {
 	"fridgeSN": "44444",
-  "itemName": "soda",
-  "count": 0
+  "itemName": "soda"
 }
 
  7. Hit Send.
  
  # Constraints:
  
- - The quantity of "soda" in any fridge cannot be more than 12 at any given time.
- - You MUST follow the provided JSON object format for the **PUT** and **POST** requests. 
+ - You MUST follow the provided JSON object format for the **PUT**, **POST**, and **DELETE** requests. 
  - The database already has the following fridges:
  
    1. {"fridgeSN":"11111","juice":13,"soda":12}
