@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
         // Convert the JSON string to a JavaScript object described by the string.
         var parsedResponse = JSON.parse(responseBody);
                 
-        // Get an array of all the key:value pairs in the object.
+        // Get an array of all the keys in the object (items in this fridge).
         const fridgeItems = Object.keys(parsedResponse);
         
         // Check to see if the item really exists in this fridge.
