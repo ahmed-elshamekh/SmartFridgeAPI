@@ -29,30 +29,16 @@ exports.handler = async (event, context) => {
         
          // If the user is trying to get a fridge that doesn't exist in the database.
         if (!responseBody) {
-            responseBody = 'This fridge does not exist';
+            responseBody = 'This fridge does not exist.';
+            responseCode = 404;
         }
-        else {
-             // Convert the JSON string to a JavaScript object described by the string.
-            var parsedResponse = JSON.parse(responseBody);
-            
-            // Get an array of all the key:value pairs in the object.
-            const mapArr = Object.entries(parsedResponse);
-            
-            // Check to see if items were completely removed from this fridge.
-            for (const [key, value] of mapArr) {
-                if (value == '0') {
-                    delete parsedResponse[key];
-                }
-            }
-            
-            // Get the updated Object in a JSON string format.
-            responseBody = JSON.stringify(parsedResponse);
+        else {    
+            // Standard response for successful HTTP requests.
+            responseCode = 200;
         }
-        
-        responseCode = 200;
     }
     catch (err) {
-        responseBody = 'Viewing the existing Fridge failed!';
+        responseBody = 'Viewing the existing fridge failed!';
         responseBody = 404;
     }
     
