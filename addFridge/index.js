@@ -29,7 +29,7 @@ exports.handler = async (event, context) => {
     responseBody = JSON.stringify(result.Item);
     
     if (responseBody) {
-        responseBody = 'This fridge already exists';
+        responseBody = 'This fridge already exists.';
         responseCode = 200;
     }
     else {
@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
     
         try {
             const data = await docClient.put(params).promise();
-            responseBody = 'A new fridge was successfully created';
+            responseBody = 'A new fridge was successfully created.';
             responseCode = 200;
         }
         catch (err) {
