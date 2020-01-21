@@ -39,7 +39,7 @@ Note: To add a new fridge to the database, the serial number of the new fridge h
 Note: You can also view the contents of a certain fridge from your browser by pasting the previous link in the URL field and specify the serial number of the fridge you want to view its contents after .../fridge as follows:
 https://1v8jk3tfk1.execute-api.us-east-1.amazonaws.com/test/fridge/11111 
 
-## Add a new item to the fridge ##
+## Add a new item to the fridge or update the count of an existing item ##
 
 1. In the Postman desktop software, click on *Create a request* under *Start something new*.
 2. From the drop-down menu, select the **PUT** request.
